@@ -10,11 +10,11 @@ function salidaFinal(){
 // funcion para encriptar el texto
 function encriptarTexto(){
 
-  let entrada =  document.getElementById("areatexto").value;
+  let entrada =  document.getElementById("areatexto").value.trim();
   let salida = document.getElementById("resultado");
 
 if(/[áéíóúÁÉÍÓÚ]/.test(entrada)||entrada.toLowerCase() != entrada ){
-      
+
 }
 else if(entrada == ""){
 
@@ -37,7 +37,7 @@ salidaFinal();
 // funcion para desencriptar el texto
 function desencriptarTexto(){
     
-  let entrada =  document.getElementById("areatexto").value;
+  let entrada =  document.getElementById("areatexto").value.trim();
   let salida = document.getElementById("resultado");
 
   if(/[áéíóúÁÉÍÓÚ]/.test(entrada)||entrada.toLowerCase() != entrada ){
