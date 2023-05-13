@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Programa-Encriptador de texto</title>
+      <link rel="icon" href="image/icono.svg">
+      <link rel="stylesheet" href="css/reset.css">
+      <link rel="stylesheet" href="css/style.css">
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'> 
+  </head>
+
+  <body>
+
+    <!--Empieza en encabezado de la pagina-->
+    <header>
+      <div class="logo">
+        <a href="index.html">
+            <h1><img src="image/Logo.png" alt="Logo de la pagina">
+            </h1>
+        </a>
+        <h2>Protege tus mensajes con encriptación</h2>
+      </div>
+    </header>
+      <!--Empieza el contenido de la pagina-->
+    <main class="Contenido">
+
+      <div class="entrada">
+        <h2><textarea name="cliente" id="areatexto"  class="textoEncriptado" cols="30" rows="10" placeholder="Ingrese el texto aqui" autocomplete="off" 
+         onkeyup="validarCaracteres(this.value);"></textarea></h2>
+      </div>
+
+      <div class="salida">
+        <h3><img src="image/Muñeco.png" id="muneco" alt="Muneco de busqueda">
+          <p id="texto1">Ningun mensaje fue encontrado</p>
+          <P id="texto2">Ingresa el texto que desea encriptar</P>
+          <p id="resultado"></p>
+        </h3>
+      </div>
+      <!--Advertencia y botones para ejecución del programa-->
+      <section class="advertenciaBotones">
+        <h4><img src="image/bi_exclamation-circle-fill.png" alt="Advertencia">
+          <p id="error"><span id="mensajeTemporal">Solo letras minúsculas y sin acentos</span></p>
+          </h4><br>
+        <ul class="botones">
+            <li><button onclick = "encriptarTexto()" class="Encriptar">Encriptar</button></li>
+            <li><button onclick="desencriptarTexto()" class="Desencriptar">Desencriptar</button></li>
+            <li><button onclick="copiar()" id ="copiar">Copiar</button></li>
+        </ul>
+      </section>
+    </main>
+      <!--Empieza el pie de página-->
+    <footer>
+      <div class="datos">
+        <a href="https://www.linkedin.com/in/jose-alvarado-72620220b/" id="linkedin" target="_blank"><img src="image/linkedin.png" alt="" class="bounce"></a> 
+        <a href="https://github.com/jose-luis-dev" id="github" target="_blank"><img src="image/git.png" alt="" class="bounce"></a>
+        <p id="derechos-Autor">© Copyright Jose Luis Alvarado - 2023</p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+      <!--ventana modal cuando no hay texto en textarea-->
+    <div id="modal" class="modal-container">
+      <div class="modal-content">
+        <img src="image/Error_1.svg" class="modal__img" alt="imagen modal">
+        <h2 class="modal_title">¡Error!</h2>
+        <p class="modal_paragraph">Debe ingresar un texto válido para poder encriptar o desencriptar.</p>
+        <div id="close" class="close">
+          <p>Aceptar</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
