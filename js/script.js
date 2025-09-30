@@ -1,12 +1,3 @@
-//funcion para limpiar la salida de texto
-function salidaFinal(){
-
-  document.getElementById("muneco").style.display = "none";
-  document.getElementById("texto1").style.display = "none";
-  document.getElementById("texto2").style.display = "none";
-  document.getElementById("copiar").style.display = "inline";
-}
-
 // funcion para encriptar el texto
 function encriptarTexto(){
 
@@ -61,14 +52,37 @@ function desencriptarTexto(){
   }
 }
 
-function copiar(){
+//funcion para limpiar la salida de texto
+function salidaFinal(){
 
-  let salida = document.getElementById("resultado").innerHTML
-  salida= salida.replace(/<[^>]+>/g, '');
-  navigator.clipboard.writeText(salida)
-  document.getElementById("areatexto").value = "";
-
+  document.getElementById("muneco").style.display = "none";
+  document.getElementById("texto1").style.display = "none";
+  document.getElementById("texto2").style.display = "none";
+  document.getElementById("copiar").style.display = "inline";
 }
+
+
+function copiar() {
+  let salida = document.getElementById("resultado").innerHTML;
+  salida = salida.replace(/<[^>]+>/g, '');
+  navigator.clipboard.writeText(salida).then(() => {
+    // Mostrar el modal de copiado
+    let modalCopiado = document.getElementById('modal-copiado');
+    modalCopiado.style.visibility = "visible";
+    modalCopiado.style.opacity = "1";
+
+    // Cerrar el modal al hacer clic en aceptar
+    let closeCopiado = document.getElementById('close-copiado');
+    closeCopiado.onclick = function() {
+      modalCopiado.style.visibility = "hidden";
+      modalCopiado.style.opacity = "0";
+    };
+  });
+
+  document.getElementById("areatexto").value = "";
+}
+
+
 //funcion que valida el texto si el usuario ingresa mayusculas o palabras con acento.
 function validartexto(){
 
@@ -83,7 +97,7 @@ function validartexto(){
     validarCaracteres(entrada);
       }
   else{
-          error.style.color = "#616970"
+          error.style.color = "#617068ff"
           error.style.fontSize = "10px"
           validarCaracteres(entrada);
       }
@@ -105,3 +119,26 @@ function validarCaracteres(texto) {
   textoLimpio = textoLimpio.replace(/[^a-z\s\n]/g, "");
   document.getElementById("areatexto").value = textoLimpio;
 }
+
+
+//funcion para limpiar el texto de entrada y restablecer la pantalla
+function limpiar() {
+  // Limpiar el área de texto y el resultado
+  document.getElementById("areatexto").value = "";
+  document.getElementById("resultado").innerText = "";
+
+  // Restablecer la visibilidad de los elementos
+  document.getElementById("muneco").style.display = "";
+  document.getElementById("texto1").style.display = "";
+  document.getElementById("texto2").style.display = "";
+  document.getElementById("copiar").style.display = "none";
+  document.getElementById("limpiar").style.display = "none";
+}
+
+// Mostrar u ocultar el botón limpiar según el contenido
+document.getElementById("areatexto").addEventListener("input", function() {
+  const btnLimpiar = document.getElementById("limpiar");
+  this.value.trim().length > 0
+    ? btnLimpiar.style.display = "inline"
+    : btnLimpiar.style.display = "none";
+});
